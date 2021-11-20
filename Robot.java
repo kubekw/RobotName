@@ -10,6 +10,7 @@ public class Robot{
 
     public Robot(){
         name = generateRobotRandomName();
+        allRobotsNames.add(name);
     }
 
     public String getName(){
@@ -19,6 +20,7 @@ public class Robot{
     public void reset(){
         allRobotsNames.remove(name);
         name = generateRobotRandomName();
+        allRobotsNames.add(name);
     }
 
     public static ArrayList<String> getAllRobotsNames() {
@@ -27,12 +29,18 @@ public class Robot{
 
     private String generateRobotRandomName(){
         String randomName;
+
         do {
             randomName = new String();
             StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append(randomChar());
-            stringBuilder.append(randomChar());
-            stringBuilder.append(randomThreeDigitsNumber());
+
+            stringBuilder
+                    .append(randomChar())
+                    .append(randomChar())
+                    .append(randomDigit())
+                    .append(randomDigit())
+                    .append(randomDigit());
+
             randomName = stringBuilder.toString();
         }
         while(!randomNameIsUnique(randomName));
@@ -42,6 +50,7 @@ public class Robot{
 
     private boolean randomNameIsUnique(String randomNameToCheck) {
         if(allRobotsNames.contains(randomNameToCheck)){
+            System.out.println("Name "+randomNameToCheck+" is not availabe");
             return false;
         }
         else {
@@ -53,8 +62,8 @@ public class Robot{
         return (char) (random.nextInt(26) + 'A');
     }
 
-    private int randomThreeDigitsNumber(){
-        return random.nextInt(899)+100;
+    private int randomDigit(){
+        return random.nextInt(10);
     }
 
 
