@@ -31,9 +31,7 @@ public class Robot{
         String randomName;
 
         do {
-            randomName = new String();
             StringBuilder stringBuilder = new StringBuilder();
-
             stringBuilder
                     .append(randomChar())
                     .append(randomChar())
